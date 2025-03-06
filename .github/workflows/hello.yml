@@ -1,16 +1,17 @@
-name: Test Python
+name: Conditional Workflow
 
 on: [push]
 
 jobs:
-  test-python:
+  build:
     runs-on: ubuntu-latest
+    env:
+      MY_ENV: "production"
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3 # This action fetches your repo’s code
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-      - name: Run script
-        run: python hello.py
+        uses: actions/checkout@v3
+      - name: Run only in production
+        if: env.MY_ENV == 'production'
+        run: echo "This runs in production!"
+      - name: Run always
+        run: echo "This runs every time!"
