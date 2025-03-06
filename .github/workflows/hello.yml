@@ -1,0 +1,10 @@
+name: Say Hello
+
+on: [push] # Trigger on every push
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest # Use an Ubuntu runner
+    steps:
+      - name: Print Hello
+        run: echo "Hello, GitHub Actions!"
